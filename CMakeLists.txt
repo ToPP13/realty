@@ -25,7 +25,7 @@ add_executable(rclst rclst.cpp )
 
 
 # Set propertiess to a target.
-set_target_properties(realty PROPERTIES
+set_target_properties(rclss rclst PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
 )
@@ -60,7 +60,8 @@ endif()
 
 
 # Load and run CMake code from a file or module.
-install(TARGETS realty RUNTIME DESTINATION bin)
+install(TARGETS rclss RUNTIME DESTINATION bin)
+install(TARGETS rclst RUNTIME DESTINATION bin)
 
 # Set a CMake, cache or environment variable to a given value.
 set(CPACK_GENERATOR DEB)
