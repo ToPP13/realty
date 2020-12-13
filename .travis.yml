@@ -6,9 +6,17 @@ before_script:
 - sudo apt-get install cmake
 - sudo apt-get install libpthread-stubs0-dev
 - sudo apt-get install libgtest-dev -y
-- sudo add-apt-repository ppa:mhier/libboost-latest -y
 - sudo apt-get update -y
-- sudo apt-get install libboost1.70-dev -y
+- wget http://dlib.net/files/dlib-19.6.tar.bz2
+- tar xvf dlib-19.6.tar.bz2
+- cd dlib-19.6/
+- mkdir build
+- cd build
+- cmake ..
+- cmake --build . --config Release
+- sudo make install
+- sudo ldconfig
+- cd ../..
 - cd /usr/src/gtest
 - sudo cmake CMakeLists.txt
 - sudo make

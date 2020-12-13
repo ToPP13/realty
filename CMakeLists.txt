@@ -9,18 +9,15 @@ endif ()
 
 # Load settings for an external project.
 find_package (Threads REQUIRED)
-find_package (Boost COMPONENTS system regex REQUIRED)
-set(Boost_USE_STATIC_LIBS OFF)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
+find_package (dlib REQUIRED)
 
 
 # Copy a file to another location and modify its contents.
 configure_file(version.h.in version.h)
 
 
-add_executable(rclss rclss.cpp )
-add_executable(rclst rclst.cpp )
+add_executable(rclss rclss.cpp csvreader.cpp classifier.cpp datapreprocessor.cpp)
+add_executable(rclst rclst.cpp csvreader.cpp classifier.cpp datapreprocessor.cpp)
 # Add an executable to the project using the specified source files.
 
 
@@ -32,13 +29,13 @@ set_target_properties(rclss rclst PROPERTIES
 
 # Add include directories to a target.
 # CMAKE_BINARY_DIR - The path to the top level of the build tree.
-target_include_directories(rclss PRIVATE "${CMAKE_BINARY_DIR}" ${Boost_INCLUDE_DIRS})
-target_include_directories(rclst PRIVATE "${CMAKE_BINARY_DIR}" ${Boost_INCLUDE_DIRS})
+target_include_directories(rclss PRIVATE "${CMAKE_BINARY_DIR}")
+target_include_directories(rclst PRIVATE "${CMAKE_BINARY_DIR}")
 
 # Add include directories to the build.
 
-target_link_libraries(rclss PRIVATE dl pthread ${Boost_LIBRARIES})
-target_link_libraries(rclst PRIVATE dl pthread ${Boost_LIBRARIES})
+target_link_libraries(rclss PRIVATE dlib )
+target_link_libraries(rclst PRIVATE dlib )
 
 # Add compile options to a target.
 if (MSVC)
