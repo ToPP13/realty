@@ -39,7 +39,8 @@ int main(int argc, char *argv[])
         }
 
         auto normalized_sample = dpp.normalize_sample(sample);
-        cl.get_close_data(normalized_sample);
+        int sample_class = cl.classify(normalized_sample);
+        cout << "recognized cluster: " << sample_class << endl;
     }
 
 }

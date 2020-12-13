@@ -41,14 +41,4 @@ int main(int argc, char *argv[]) {
     cout << "dump clusters: " << cl.dump_cluster() << endl;
 
 
-
-    int i = 0;
-    for (auto sample: normalized_samples)
-    {
-        i++;
-        if (i>10)
-            break;
-        cl.get_close_data(sample);
-    }
-
 }

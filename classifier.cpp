@@ -70,17 +70,16 @@ bool Classifier::load_cluster()
 }
 
 
-std::vector<userData> Classifier::get_close_data(userData & sample)
+int Classifier::classify(userData & sample)
 {
-    std::vector<userData> result;
+    int result_class = -1;
     if (pKmean_cluster != nullptr)
     {
-        auto cluster = (*pKmean_cluster)(sample);
-        std::cout << "cluster: " << cluster << endl;
+        result_class = (*pKmean_cluster)(sample);
     }
     else
     {
         std::cout << "not loaded" << endl;
     }
-    return result;
+    return result_class;
 }
