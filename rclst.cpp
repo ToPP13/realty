@@ -14,6 +14,9 @@
 using namespace std;
 using namespace dlib;
 
+
+
+
 int main(int argc, char *argv[]) {
     if (argc < 3)
         return -1;
@@ -30,15 +33,11 @@ int main(int argc, char *argv[]) {
     auto samples = reader.get_samples(samples_file_name);
 
 
-    DataPreProcessor dpp(file_name);
-    dpp.calculate_normalization_values(samples);
-    dpp.dump_normalization_values();
-    dpp.load_normalization_values();
-    auto normalized_samples = dpp.normalize_samples(samples);
-
     Classifier cl(file_name);
-    cl.create_clusters(normalized_samples, cluster_num);
+    cl.create_clusters(samples, cluster_num);
     cout << "dump clusters: " << cl.dump_cluster() << endl;
+
+    // classificate and dump clusters
 
 
 }

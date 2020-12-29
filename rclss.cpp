@@ -18,9 +18,6 @@ int main(int argc, char *argv[])
     // read
     CSVReader reader;
 
-    DataPreProcessor dpp(file_name);
-    dpp.load_normalization_values();
-
     Classifier cl(file_name);
     cout << "load cluster" << endl;
     cl.load_cluster();
@@ -38,9 +35,8 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        auto normalized_sample = dpp.normalize_sample(sample);
-        int sample_class = cl.classify(normalized_sample);
-        cout << "recognized cluster: " << sample_class << endl;
+        int sample_class = cl.classify(sample);
+        cl.print_close_samples(sample_class, sample);
     }
 
 }
